@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "AAYSSA",
+    "slug": "aayssa",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.dineshk2004.aayssa"
+    },
+    "android": {
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "output": "static"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-font"
+    ],
+    "scheme": "aayssa",
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
