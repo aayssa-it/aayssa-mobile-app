@@ -1,7 +1,7 @@
 import Ionicons from '@expo/vector-icons/Ionicons';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-export type WebsitePageProps = { url: string; title: string; close: () => void };
+export type WebsitePageProps = { url: string; title: string; close: () => void; embedded?: boolean };
 
 export function WebsiteHeader({ title, hostname, back, close }: { title: string; hostname: string; back: () => void; close: () => void }) {
   return (
