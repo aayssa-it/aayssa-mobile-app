@@ -17,6 +17,6 @@ The official site's navigation still links to `/calendar`, `/gallery`, `/member-
 
 Calendar and Gallery are dedicated in-app WebView tabs on iOS/Android. The browser preview retains the existing explicit external website button because embedded website framing is unreliable on web. Source buttons always open the live website; native app shortcuts open the new app screens.
 
-Navigation uses Expo Router's existing JavaScript tabs. Below 400 points (adjusted for text scale), Contact Us is hidden from the tab bar and remains a full-width button immediately after the Home hero. Events/seva and membership use secondary stack screens reachable from Home; the member icon still opens membership. These routes retain their existing deep links.
+Navigation uses Expo Router's existing JavaScript tabs. Below 400 points (adjusted for text scale), the Contact Us tab item is hidden from the tab bar while its route remains navigable and remains a full-width button immediately after the Home hero. Events/seva and membership use secondary stack screens reachable from Home; the member icon still opens membership. These routes retain their existing deep links.
 
 Refresh these summaries when the organization changes its descriptions. Preserve the separation between descriptive text and live operational information.

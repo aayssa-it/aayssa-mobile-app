@@ -39,7 +39,7 @@ export default function TabLayout() {
       <Tabs.Screen name="calendar" options={{ title: 'Calendar', tabBarIcon: ({ focused, size }) => <Ionicons name="calendar-outline" size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
       <Tabs.Screen name="resources" options={{ title: 'Resources', tabBarIcon: ({ focused, size }) => <Ionicons name="book-outline" size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
       <Tabs.Screen name="gallery" options={{ title: 'Gallery', tabBarIcon: ({ focused, size }) => <Ionicons name="images-outline" size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
-      <Tabs.Screen name="contact-us" options={{ title: 'Contact Us', href: compact ? null : '/contact-us', tabBarIcon: ({ focused, size }) => <Ionicons name="mail-outline" size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
+      <Tabs.Screen name="contact-us" options={{ title: 'Contact Us', tabBarItemStyle: compact ? { display: 'none' } : undefined, tabBarIcon: ({ focused, size }) => <Ionicons name="mail-outline" size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
     </Tabs>
   );
 }
