@@ -8,10 +8,12 @@
     "userInterfaceStyle": "light",
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.dineshk2004.aayssa"
+      "bundleIdentifier": "org.aayssa.app",
+      "deploymentTarget": "17.0"
     },
     "android": {
-      "predictiveBackGestureEnabled": false
+      "predictiveBackGestureEnabled": false,
+      "package": "org.aayssa.app"
     },
     "web": {
       "favicon": "./assets/favicon.png",

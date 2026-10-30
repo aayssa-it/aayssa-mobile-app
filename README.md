@@ -13,6 +13,26 @@ npm run android
 npm run web
 ```
 
+For guided native setup and clearer prerequisite errors, use:
+
+```sh
+npm run native:check
+npm run ios:dev
+npm run android:dev
+```
+
+Pass `--clean` after `--` to regenerate a platform before building:
+
+```sh
+npm run ios:dev -- --clean
+npm run android:dev -- --clean
+```
+
+The iOS command requires Xcode, an installed Simulator runtime, and CocoaPods.
+The Android command requires Android Studio and a running emulator. Xcode does
+not provide the Android emulator. The iOS helper also warms Expo SDK 58's native
+module scanner and retries once if the first native build fails.
+
 Use the terminal QR code to open the app in an SDK-compatible Expo Go installation. Simulator shortcuts require the corresponding local simulator tools. If you use a custom development build, rebuild it after native dependencies or native configuration change.
 
 `npm start` explicitly opens the Expo Go workflow and clears Metro's cache. This avoids carrying stale module-resolution state across SDK upgrades. Stop an older server before starting a new one, and reload Expo Go using the new server's QR code.
