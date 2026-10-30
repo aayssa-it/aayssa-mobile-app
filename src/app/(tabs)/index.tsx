@@ -3,6 +3,8 @@ import { router } from 'expo-router';
 import { Pressable, Text, View } from 'react-native';
 
 import { Screen } from '../../components/Screen';
+import { RouteButton } from '../../components/ui';
+import { organization } from '../../data/organization';
 import { shortcuts } from '../../data/content';
 import { useOpenLink } from '../../providers/LinkProvider';
 import { styles as s } from '../../theme';
@@ -34,6 +36,14 @@ export default function HomeScreen() {
           <Text style={s.heroFoot}>THATHVAMASI</Text>
           <View style={s.heroFooterLine} />
         </View>
+      </View>
+      <RouteButton label="Contact Us" href="/contact-us" secondary />
+      <View style={s.homeSection}>
+        <Text accessibilityRole="header" style={s.homeSectionTitle}>Welcome to AAYSSA</Text>
+        <Text style={s.body}>{organization.introduction}</Text>
+        <RouteButton label="About our Sangam" href="/about" secondary />
+        <RouteButton label="Events & seva" href="/events" secondary />
+        <RouteButton label="Membership & community" href="/community" secondary />
       </View>
       <View style={s.homeSection}>
         <Text accessibilityRole="header" style={s.homeSectionTitle}>From the Sangam</Text>

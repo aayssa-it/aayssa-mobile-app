@@ -1,5 +1,20 @@
 # Validation
 
+## Navigation and native content — October 30, 2026
+
+Work is on `feature/navigation-static-content` in a separate clone of latest main (`43ed3bb`). The original ZIP folder has no Git history and was left unchanged.
+
+- Organization and four seva descriptions verified against official website pages before summarizing. See `docs/content-sources.md` for provenance and the distinction between bundled descriptions and live operational information.
+- `npm run lint` and `npm run typecheck` passed.
+- `npm test` passed all 11 tests, including the existing eight and three navigation regressions covering native shortcuts, live membership/registration, and compact tab selection.
+- `npx expo install --check` reported dependencies are up to date.
+- `CI=1 npx expo export --platform all --output-dir /private/tmp/aayssa-navigation-export-contact-fix` passed for the final iOS, Android, and web implementation, with 17 static route URLs.
+- Browser interaction checks passed at 375- and 430-point widths: four/five visible tabs, native About and seva descriptions, Contact Us navigation, Resources access, and Calendar/Gallery web fallbacks. No runtime exceptions were recorded. Compact Contact Us hides only its tab item, preserving route navigation from secondary screens.
+- A fresh iOS development bundle returned HTTP 200. The preview manifest reports SDK 58.0.0 and the `src/app` Router root.
+- `package.json`, `package-lock.json`, `app.json`, Metro/Babel configuration, and the entry point match origin/main. No native folders were created or edited.
+
+Physical iPhone interaction testing remains pending; see `docs/iphone-testing.md`. Exports and regression tests do not establish authenticated membership, successful registration, or embedded calendar/gallery interaction on a physical device. The user reviewed the changes and explicitly authorized committing and pushing the feature branch on October 30, 2026. This approval does not imply that every physical-device checklist item has been verified.
+
 Checked October 26, 2026 after upgrading the existing application from Expo SDK 57 to SDK 58.
 
 ## Follow-up: Router `./head` resolution

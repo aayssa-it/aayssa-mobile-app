@@ -1,13 +1,13 @@
 import { Text, View } from 'react-native';
 
-import { Screen } from '../../components/Screen';
-import { ResourceRow, WebsiteButton } from '../../components/ui';
-import { communityLinks } from '../../data/content';
-import { styles as s } from '../../theme';
+import { Screen } from '../components/Screen';
+import { ResourceRow, WebsiteButton } from '../components/ui';
+import { communityLinks } from '../data/content';
+import { styles as s } from '../theme';
 
 export default function CommunityScreen() {
   return (
-    <Screen>
+    <Screen stack>
       <Text style={s.eyebrow}>BELONG & PARTICIPATE</Text>
       <Text accessibilityRole="header" style={s.pageTitle}>Our Sangam</Text>
       <View style={s.notice}>
