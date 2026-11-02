@@ -28,13 +28,16 @@ export default function TabLayout() {
       tabBarInactiveTintColor: '#70665A',
       tabBarStyle: { backgroundColor: '#FFFDF8', borderTopColor: '#E1D9CB' },
       tabBarLabelStyle: { fontSize: 12 },
+      tabBarLabelPosition: 'below-icon',
+      tabBarPosition: 'bottom',
       tabBarHideOnKeyboard: true,
       sceneStyle: { backgroundColor: '#FBF8F2' },
     }}>
       <Tabs.Screen name="index" options={{ title: 'Home', tabBarIcon: ({ focused, size }) => <Ionicons name="home-outline" size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
-      <Tabs.Screen name="events" options={{ title: 'Events', tabBarIcon: ({ focused, size }) => <Ionicons name="calendar-outline" size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
-      <Tabs.Screen name="resources" options={{ title: 'Resources', tabBarIcon: ({ focused, size }) => <Ionicons name="musical-notes-outline" size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
-      <Tabs.Screen name="community" options={{ title: 'Community', tabBarIcon: ({ focused, size }) => <Ionicons name="people-outline" size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
+      <Tabs.Screen name="calendar" options={{ title: 'Calendar', tabBarIcon: ({ focused, size }) => <Ionicons name="calendar-outline" size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
+      <Tabs.Screen name="resources" options={{ title: 'Resources', tabBarIcon: ({ focused, size }) => <Ionicons name="book-outline" size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
+      <Tabs.Screen name="gallery" options={{ title: 'Gallery', tabBarIcon: ({ focused, size }) => <Ionicons name="images-outline" size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
+      <Tabs.Screen name="contact-us" options={{ title: 'Contact Us', tabBarIcon: ({ focused, size }) => <Ionicons name="mail-outline" size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
     </Tabs>
   );
 }
