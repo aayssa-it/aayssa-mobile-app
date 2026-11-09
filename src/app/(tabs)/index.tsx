@@ -38,6 +38,12 @@ export default function HomeScreen() {
         </View>
       </View>
       <View style={s.homeSection}>
+        <Text accessibilityRole="header" style={s.homeSectionTitle}>Support AAYSSA</Text>
+        <Text style={s.body}>Help sustain worship, community programs, and seva through a secure donation.</Text>
+        <RouteButton label="Donate to AAYSSA" href="/donate" />
+        <RouteButton label="View my donations" href="/my-donations" secondary />
+      </View>
+      <View style={s.homeSection}>
         <Text accessibilityRole="header" style={s.homeSectionTitle}>Welcome to AAYSSA</Text>
         <Text style={s.body}>{organization.introduction}</Text>
         <RouteButton label="About our Sangam" href="/about" secondary />
