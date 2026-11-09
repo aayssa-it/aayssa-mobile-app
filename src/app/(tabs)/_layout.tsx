@@ -33,6 +33,7 @@ export default function TabLayout() {
     }}>
       <Tabs.Screen name="index" options={{ title: 'Home', tabBarIcon: ({ focused, size }) => <Ionicons name="home-outline" size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
       <Tabs.Screen name="events" options={{ title: 'Events', tabBarIcon: ({ focused, size }) => <Ionicons name="calendar-outline" size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
+      <Tabs.Screen name="donate" options={{ title: 'Donate', tabBarIcon: ({ focused, size }) => <Ionicons name={focused ? 'heart' : 'heart-outline'} size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
       <Tabs.Screen name="resources" options={{ title: 'Resources', tabBarIcon: ({ focused, size }) => <Ionicons name="musical-notes-outline" size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
       <Tabs.Screen name="community" options={{ title: 'Community', tabBarIcon: ({ focused, size }) => <Ionicons name="people-outline" size={size} color={focused ? '#244D3F' : '#70665A'} /> }} />
     </Tabs>
