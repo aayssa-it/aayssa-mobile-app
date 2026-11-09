@@ -4,6 +4,7 @@ import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { pageTitle } from '../data/content';
+import { nativeDestination } from '../lib/appNavigation';
 import { classifyUrl, resolveDestination } from '../lib/urls';
 
 type LinkActions = {
@@ -40,9 +41,10 @@ export function LinkProvider({ children }: PropsWithChildren) {
   }, [openExternal]);
 
   const open = useCallback((path: string) => {
-    if(path === '/calendar' || path === '/gallery' || path === '/contact-us') {
+    const native = nativeDestination(path);
+    if (native) {
       setError('');
-      router.navigate(path);
+      router.navigate(native);
     } else {
       openWebsite(path);
     }

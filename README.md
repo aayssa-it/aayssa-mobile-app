@@ -71,10 +71,14 @@ src/app/(tabs)/gallery.tsx       Live photo gallery
 src/app/(tabs)/contact-us.tsx    Contact and organizer links
 src/app/events.tsx              Events and seva
 src/app/community.tsx           Membership and community links
+src/app/about.tsx               Native organization introduction
+src/app/seva.tsx                Native seva descriptions
 src/app/website.tsx             Validated website route
 src/app/+not-found.tsx          Unknown-route fallback
 src/components/                 Shared UI and platform-specific website views
 src/data/content.ts             Resource, service, and shortcut definitions
+src/data/organization.ts        Verified organization and seva summaries
+src/lib/appNavigation.ts        Native shortcut routing policy
 src/lib/urls.ts                 URL resolution and navigation policy
 src/lib/browserState.ts         Website loading, history, and retry state
 src/providers/LinkProvider.tsx  Link opening and visible failure messages
@@ -84,7 +88,7 @@ tests/                          URL and website-state regression tests
 
 `App.tsx` contains the root stack and providers, exposed by `src/app/_layout.tsx`. Tab navigation uses Expo Router, with distinct URLs and preserved tab state. The root layout anchors website deep links to the tabs using SDK 58's `unstable_settings.anchor`. The app scheme is `aayssa`; scheme changes require a native rebuild. Typed route generation is enabled and Expo generates route types when starting the development server.
 
-The bottom bar always shows Home, Calendar, Resources, Gallery, and Contact Us, including on narrow phones. Calendar and Gallery load inside their tabs on native platforms. Home shortcuts select the corresponding tab; contact form buttons open the live website. Events and membership remain accessible from Home and the profile button through the root stack.
+The bottom bar always shows Home, Calendar, Resources, Gallery, and Contact Us, including on narrow phones. Calendar and Gallery load inside their tabs on native platforms. Home shortcuts select the corresponding tab; contact form buttons open the live website. About, events, seva, and membership remain accessible from Home and the profile button through the root stack. Donate and authentication continue through their existing routes and provider.
 
 The SDK 58 upgrade retains all existing screens, styles, content, and website destinations. Babel uses `babel-preset-expo`, and Metro extends `expo/metro-config` so Router's app-root transform and context modules are enabled. Do not manually set `EXPO_ROUTER_APP_ROOT`, add the legacy `expo-router/babel` plugin, or replace Router with `registerRootComponent(App)`: `App.tsx` is a Router layout, not a standalone navigation container. Configuration follows the [Router installation guide](https://docs.expo.dev/router/installation/) and [SDK 58 migration guide](https://docs.expo.dev/router/migrate/sdk-57-to-58/).
 

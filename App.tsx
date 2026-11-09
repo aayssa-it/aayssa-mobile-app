@@ -20,6 +20,8 @@ export default function RootLayout() {
             <Stack.Screen name="website" />
             <Stack.Screen name="events" options={{ headerShown: true, title: 'Events & seva', headerBackTitle: 'Back' }} />
             <Stack.Screen name="community" options={{ headerShown: true, title: 'Membership & community', headerBackTitle: 'Back' }} />
+            <Stack.Screen name="about" options={{ headerShown: true, title: 'About AAYSSA', headerBackTitle: 'Back' }} />
+            <Stack.Screen name="seva" options={{ headerShown: true, title: 'Worship & service', headerBackTitle: 'Back' }} />
             <Stack.Screen name="donate/[id]" />
             <Stack.Screen name="donate/thanks" />
             <Stack.Screen name="my-donations" />
