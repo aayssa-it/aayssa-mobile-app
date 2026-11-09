@@ -13,7 +13,11 @@
     },
     "android": {
       "predictiveBackGestureEnabled": false,
-      "package": "org.aayssa.app"
+      "package": "org.aayssa.app",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/android-icon-foreground.png",
+        "backgroundColor": "#FFF8E8"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png",
