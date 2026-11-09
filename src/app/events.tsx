@@ -1,13 +1,13 @@
 import { Text, View } from 'react-native';
 
-import { Screen } from '../../components/Screen';
-import { ResourceRow, WebsiteButton } from '../../components/ui';
-import { services } from '../../data/content';
-import { styles as s } from '../../theme';
+import { Screen } from '../components/Screen';
+import { ResourceRow, WebsiteButton } from '../components/ui';
+import { services } from '../data/content';
+import { styles as s } from '../theme';
 
 export default function EventsScreen() {
   return (
-    <Screen>
+    <Screen stack>
       <Text style={s.eyebrow}>COME TOGETHER</Text>
       <Text accessibilityRole="header" style={s.pageTitle}>Events & seva</Text>
       <Text style={s.body}>Find opportunities to worship, serve, and connect.</Text>

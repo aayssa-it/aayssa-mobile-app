@@ -65,9 +65,12 @@ App.tsx                          Root stack and providers
 src/app/_layout.tsx              Exposes the root app layout
 src/app/(tabs)/_layout.tsx       Shared header and bottom tabs
 src/app/(tabs)/index.tsx         Home
-src/app/(tabs)/events.tsx        Events and seva
+src/app/(tabs)/calendar.tsx      Live calendar
 src/app/(tabs)/resources.tsx     Searchable resources
-src/app/(tabs)/community.tsx     Membership and community links
+src/app/(tabs)/gallery.tsx       Live photo gallery
+src/app/(tabs)/contact-us.tsx    Contact and organizer links
+src/app/events.tsx              Events and seva
+src/app/community.tsx           Membership and community links
 src/app/website.tsx             Validated website route
 src/app/+not-found.tsx          Unknown-route fallback
 src/components/                 Shared UI and platform-specific website views
@@ -80,6 +83,8 @@ tests/                          URL and website-state regression tests
 ```
 
 `App.tsx` contains the root stack and providers, exposed by `src/app/_layout.tsx`. Tab navigation uses Expo Router, with distinct URLs and preserved tab state. The root layout anchors website deep links to the tabs using SDK 58's `unstable_settings.anchor`. The app scheme is `aayssa`; scheme changes require a native rebuild. Typed route generation is enabled and Expo generates route types when starting the development server.
+
+The bottom bar always shows Home, Calendar, Resources, Gallery, and Contact Us, including on narrow phones. Calendar and Gallery load inside their tabs on native platforms. Home shortcuts select the corresponding tab; contact form buttons open the live website. Events and membership remain accessible from Home and the profile button through the root stack.
 
 The SDK 58 upgrade retains all existing screens, styles, content, and website destinations. Babel uses `babel-preset-expo`, and Metro extends `expo/metro-config` so Router's app-root transform and context modules are enabled. Do not manually set `EXPO_ROUTER_APP_ROOT`, add the legacy `expo-router/babel` plugin, or replace Router with `registerRootComponent(App)`: `App.tsx` is a Router layout, not a standalone navigation container. Configuration follows the [Router installation guide](https://docs.expo.dev/router/installation/) and [SDK 58 migration guide](https://docs.expo.dev/router/migrate/sdk-57-to-58/).
 

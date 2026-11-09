@@ -5,10 +5,10 @@ import { useOpenLink } from '../providers/LinkProvider';
 import { styles as s } from '../theme';
 import { WebsiteHeader, type WebsitePageProps } from './WebsiteHeader';
 
-export default function WebsitePage({ url, title, close }: WebsitePageProps) {
+export default function WebsitePage({ url, title, close, embedded = false }: WebsitePageProps) {
   const { openExternal } = useOpenLink();
   return (
-    <SafeAreaView style={s.safe}>
+    <SafeAreaView style={s.safe} edges={embedded ? ['left', 'right'] : undefined}>
       <View style={s.shell}>
         <WebsiteHeader title={title} hostname={new URL(url).hostname} back={close} close={close} />
         <View style={styles.message}>
