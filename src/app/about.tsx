@@ -13,7 +13,7 @@ export default function AboutScreen() {
       <Text style={s.body}>{organization.description}</Text>
       <Text accessibilityRole="header" style={s.section}>Seva at home</Text>
       <Text style={s.body}>{organization.homeSeva}</Text>
-      <RouteButton label="Explore events & seva" href="/events" />
+      <RouteButton label="View calendar" href="/calendar" />
       <RouteButton label="Membership & community" href="/community" secondary />
       <WebsiteButton label="Read the official introduction" path={organization.source} secondary />
     </Screen>

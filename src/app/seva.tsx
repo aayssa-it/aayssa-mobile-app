@@ -22,7 +22,7 @@ export default function SevaScreen() {
         <RouteButton label="View calendar" href="/calendar" secondary />
         <RouteButton label="Contact Us" href="/contact-us" secondary />
       </> : <Text style={s.body}>Choose a seva to learn more about worship and service with AAYSSA.</Text>}
-      <RouteButton label="All events & seva" href="/events" secondary />
+      <RouteButton label="View calendar" href="/calendar" secondary />
     </Screen>
   );
 }

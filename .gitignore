@@ -30,7 +30,9 @@ yarn-error.*
 .DS_Store
 *.pem
 
-# local env files
+# local credentials and environment files
+credentials.json
+google-service-account*.json
 .env*.local
 
 # typescript

@@ -6,6 +6,7 @@ import { HomePoojaAccess } from '../../components/calendar/HomePoojaAccess';
 import { errorMessage } from '../../lib/api';
 import { fetchHomePoojaCalendar, type CalendarDate, type HomePoojaCalendar } from '../../lib/calendar';
 import { calendarCells, monthKey, monthKeys } from '../../lib/calendarGrid';
+import { useOpenLink } from '../../providers/LinkProvider';
 
 const weekdays = ['S', 'M', 'T', 'W', 'T', 'F', 'S'];
 const today = new Date();
@@ -28,6 +29,7 @@ function eventTitle(item: CalendarDate) {
 }
 
 export default function CalendarScreen() {
+  const { openExternal } = useOpenLink();
   const [calendar, setCalendar] = useState<HomePoojaCalendar | null>(null);
   const [activeMonth, setActiveMonth] = useState('');
   const [selectedDate, setSelectedDate] = useState('');
@@ -63,6 +65,7 @@ export default function CalendarScreen() {
   const dates = useMemo(() => new Map(calendar?.dates.map(item => [item.date, item]) ?? []), [calendar]);
   const cells = useMemo(() => activeMonth ? calendarCells(activeMonth) : [], [activeMonth]);
   const selected = selectedDate ? dates.get(selectedDate) : undefined;
+  const selectedAddress = selected?.eventAddress || selected?.poojaAddress;
   const monthIndex = months.indexOf(activeMonth);
 
   const changeMonth = (offset: number) => {
@@ -162,11 +165,16 @@ export default function CalendarScreen() {
                 <Ionicons name="time-outline" size={19} color="#8A5126" />
                 <Text style={styles.detailText}>{selected.eventTime || selected.bookingTime || selected.time || 'Time to be announced'}</Text>
               </View>
-              {(selected.eventAddress || selected.poojaAddress) ? (
-                <View style={styles.detailLine}>
+              {selectedAddress ? (
+                <Pressable
+                  accessibilityRole="link"
+                  accessibilityLabel={`Open ${selectedAddress} in Google Maps`}
+                  onPress={() => openExternal(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(selectedAddress)}`)}
+                  style={({ pressed }) => [styles.detailLine, styles.addressLink, pressed && styles.pressed]}>
                   <Ionicons name="location-outline" size={19} color="#8A5126" />
-                  <Text style={styles.detailText}>{selected.eventAddress || selected.poojaAddress}</Text>
-                </View>
+                  <Text style={styles.detailText}>{selectedAddress}</Text>
+                  <Ionicons name="open-outline" size={18} color="#8A5126" />
+                </Pressable>
               ) : null}
               {selected.reason && selected.reason !== eventTitle(selected) ? <Text style={styles.detailNote}>{selected.reason}</Text> : null}
             </View>
@@ -223,6 +231,7 @@ const styles = StyleSheet.create({
   detailDate: { color: '#A55017', fontSize: 10, fontWeight: '800', letterSpacing: 1.2 },
   detailTitle: { color: '#3E3125', fontSize: 20, lineHeight: 27, fontWeight: '800' },
   detailLine: { flexDirection: 'row', alignItems: 'flex-start', gap: 10 },
+  addressLink: { minHeight: 44, paddingVertical: 8, marginVertical: -8 },
   detailText: { flex: 1, color: '#5D5146', fontSize: 14, lineHeight: 21 },
   detailNote: { color: '#76685B', fontSize: 13, lineHeight: 20 },
   messageCard: { alignItems: 'center', backgroundColor: '#FFFDF9', borderWidth: 1, borderColor: '#E8DED0', borderRadius: 22, padding: 26, gap: 10 },
