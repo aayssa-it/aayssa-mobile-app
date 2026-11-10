@@ -8,7 +8,7 @@ import { colors, d } from '../components/donate/styles';
 import { errorMessage } from '../lib/api';
 import { useAuth } from '../providers/AuthProvider';
 
-const ALLOWED_NEXT = ['/my-donations', '/admin/campaigns', '/donate'] as const;
+const ALLOWED_NEXT = ['/my-donations', '/admin/campaigns', '/donate', '/calendar', '/community'] as const;
 type Next = typeof ALLOWED_NEXT[number];
 
 /** Member sign-in with the same email passcode as the website portal. */

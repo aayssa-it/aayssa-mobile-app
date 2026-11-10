@@ -5,9 +5,21 @@ import { Pressable, Text, View } from 'react-native';
 import { Screen } from '../../components/Screen';
 import { RouteButton } from '../../components/ui';
 import { organization } from '../../data/organization';
-import { shortcuts } from '../../data/content';
 import { useOpenLink } from '../../providers/LinkProvider';
 import { styles as s } from '../../theme';
+
+const socialLinks = [
+  { label: 'YouTube', icon: 'logo-youtube' as const, url: 'https://www.youtube.com/@AAYSSA' },
+  { label: 'Instagram', icon: 'logo-instagram' as const, url: 'https://www.instagram.com/atlanta_ayyappa_seva_sangam/' },
+  { label: 'Facebook', icon: 'logo-facebook' as const, url: 'https://www.facebook.com/ATLANTAAYYAPPASEVASANGAM' },
+  { label: 'Threads', icon: 'at-outline' as const, url: 'https://www.threads.net/@atlanta_ayyappa_seva_sangam' },
+  { label: 'X', icon: 'logo-x' as const, url: 'https://x.com/atl_ayyappaseva' },
+  { label: 'Pinterest', icon: 'logo-pinterest' as const, url: 'https://www.pinterest.com/aayssamedia/' },
+  { label: 'WhatsApp Channel', icon: 'logo-whatsapp' as const, url: 'https://whatsapp.com/channel/0029VaylC6n2v1Iof6BA6k0t' },
+  { label: 'WhatsApp Groups', icon: 'people-outline' as const, url: 'https://chat.whatsapp.com/CDH3nm4UUslCpLUxeoBVab?mode=gi_t' },
+];
+
+const mapUrl = 'https://www.google.com/maps/search/?api=1&query=Atlanta+Ayyappa+Seva+Sangam+Shiloh+Road+Cumming+GA';
 
 export default function HomeScreen() {
   const { open } = useOpenLink();
@@ -51,31 +63,30 @@ export default function HomeScreen() {
         <RouteButton label="Membership & community" href="/community" secondary />
       </View>
       <View style={s.homeSection}>
-        <Text accessibilityRole="header" style={s.homeSectionTitle}>From the Sangam</Text>
-        <View style={s.homeNotice}>
-          <View style={s.homeNoticeHeader}>
-            <View style={s.homeNoticeIcon}><Ionicons accessible={false} name="flower-outline" size={23} color="#B84A0A" /></View>
-            <Text style={s.homeNoticeTag}>REGISTRATION</Text>
+        <Text accessibilityRole="header" style={s.homeSectionTitle}>Visit & connect</Text>
+        <Pressable accessibilityRole="link" accessibilityLabel="Open AAYSSA location in Maps" onPress={() => open(mapUrl)} style={({ pressed }) => [s.homeMapCard, pressed && s.homePressed]}>
+          <View pointerEvents="none" accessible={false} style={s.homeMapPreview}>
+            <View style={[s.homeMapRoad, { width: '120%', transform: [{ rotate: '-12deg' }] }]} />
+            <View style={[s.homeMapRoad, { width: '95%', transform: [{ rotate: '54deg' }] }]} />
+            <View style={s.homeMapPin}><Ionicons name="location" size={25} color="#FFF9E9" /></View>
           </View>
-          <Text accessibilityRole="header" style={s.homeNoticeTitle}>Maaladharan registration</Text>
-          <Text style={s.homeNoticeBody}>View the official page for current availability and registration details.</Text>
-          <Pressable accessibilityRole="link" accessibilityLabel="View registration" onPress={() => open('/maaladharan-registration')} style={({ pressed }) => [s.homeNoticeButton, pressed && s.homePressed]}>
-            <Text style={s.homeNoticeButtonText}>View registration</Text>
-            <Ionicons accessible={false} name="arrow-forward" size={20} color="#FFF9E9" />
-          </Pressable>
-        </View>
+          <View style={s.homeMapCopy}>
+            <View style={{ flex: 1, gap: 3 }}>
+              <Text style={s.cardTitle}>Atlanta Ayyappa Seva Sangam</Text>
+              <Text style={s.body}>Shiloh Road, Cumming, Georgia</Text>
+            </View>
+            <Ionicons name="open-outline" size={21} color="#B84A0A" />
+          </View>
+          <Text style={[s.small, { paddingHorizontal: 16, marginTop: 8 }]}>Tap to open directions. Confirm the event venue before traveling.</Text>
+        </Pressable>
       </View>
       <View style={s.homeSection}>
-        <Text accessibilityRole="header" style={s.homeSectionTitle}>Your community, closer</Text>
-        <View style={s.grid}>
-          {shortcuts.map(item => (
-            <Pressable key={item.path} accessibilityRole="link" accessibilityLabel={item.title} accessibilityHint={item.subtitle} onPress={() => open(item.path)} style={({ pressed }) => [s.tile, pressed && s.homePressed]}>
-              <View style={s.tileHeader}>
-                <View style={s.tileMark}><Ionicons accessible={false} name={item.icon} size={24} color="#B84A0A" /></View>
-                <Ionicons accessible={false} name="chevron-forward" size={18} color="#A67455" />
-              </View>
-              <Text style={s.tileTitle}>{item.title}</Text>
-              <Text style={s.tileSubtitle}>{item.subtitle}</Text>
+        <Text accessibilityRole="header" style={s.homeSectionTitle}>Follow AAYSSA</Text>
+        <View style={s.homeSocialGrid}>
+          {socialLinks.map(item => (
+            <Pressable key={item.label} accessibilityRole="link" accessibilityLabel={`Open AAYSSA on ${item.label}`} onPress={() => open(item.url)} style={({ pressed }) => [s.homeSocialButton, pressed && s.homePressed]}>
+              <Ionicons accessible={false} name={item.icon} size={20} color="#B84A0A" />
+              <Text style={s.homeSocialText}>{item.label}</Text>
             </Pressable>
           ))}
         </View>

@@ -8,7 +8,6 @@ import { errorMessage } from '../../lib/api';
 import type { DonationSummary } from '../../lib/member';
 import { formatMoney } from '../../lib/money';
 import { useAuth } from '../../providers/AuthProvider';
-import { useOpenLink } from '../../providers/LinkProvider';
 import { ErrorBox, Loading } from './parts';
 import { colors, d } from './styles';
 
@@ -44,8 +43,6 @@ export function useDonationSummary() {
 
 /** Member sign-in, or email verification for donors who are not members. */
 function SignInChoices({ next }: { next: string }) {
-  const { open } = useOpenLink();
-
   return (
     <View style={{ gap: 14 }}>
       <View style={[d.row, { gap: 12 }]}>
@@ -61,7 +58,7 @@ function SignInChoices({ next }: { next: string }) {
       <View style={{ backgroundColor: colors.saffronTint, borderRadius: 16, padding: 16, gap: 10 }}>
         <Text style={[d.rowTitle, { fontSize: 15 }]}>Become an AAYSSA member</Text>
         <Text style={[d.small, { color: colors.body, lineHeight: 19 }]}>Members sign in once to see donations, Maaladharan and Home Pooja bookings in one place.</Text>
-        <Pressable accessibilityRole="button" onPress={() => open('/member-registration')} style={({ pressed }) => [d.outline, { borderColor: colors.saffron, minHeight: 46 }, pressed && d.pressed]}>
+        <Pressable accessibilityRole="button" onPress={() => router.push('/member-registration')} style={({ pressed }) => [d.outline, { borderColor: colors.saffron, minHeight: 46 }, pressed && d.pressed]}>
           <Text style={[d.outlineText, { color: colors.saffronDeep, fontSize: 15 }]}>Become a member</Text>
         </Pressable>
       </View>

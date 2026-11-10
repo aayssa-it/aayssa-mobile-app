@@ -5,6 +5,26 @@ export type Member = {
   lastName: string;
   email: string;
   role: 'Member' | 'Board' | 'Admin' | string;
+  mobileNumber?: string;
+  spouseFirstName?: string;
+  spouseLastName?: string;
+  spouseEmail?: string;
+  address?: string;
+  noOfAdults?: number | string;
+  noOfKids?: number | string;
+  emailOptIn?: boolean;
+  textOptIn?: boolean;
+};
+
+export type Volunteer = {
+  id?: number | string;
+  memberType: 'primary' | 'spouse' | 'additional' | string;
+  memberTypeLabel?: string;
+  name?: string;
+  relationship?: string;
+  interested: boolean;
+  areas: string[];
+  active?: boolean;
 };
 
 export type DonationSummary = {
@@ -41,6 +61,21 @@ export async function fetchMember() {
   return data.member;
 }
 
+export async function updateMemberProfile(profile: Member) {
+  const data = await api<{ member: Member }>('/update-profile', { method: 'POST', auth: true, body: { profile } });
+  return data.member;
+}
+
+export async function fetchMyVolunteers() {
+  const data = await api<{ volunteers: Volunteer[] }>('/my-volunteers', { auth: true });
+  return data.volunteers ?? [];
+}
+
+export async function updateMyVolunteers(volunteers: Volunteer[]) {
+  const data = await api<{ volunteers: Volunteer[] }>('/update-volunteers', { method: 'POST', auth: true, body: { volunteers } });
+  return data.volunteers ?? [];
+}
+
 export async function fetchMyDonations() {
   const data = await api<{ donations: DonationSummary }>('/my-donations', { auth: true });
   return data.donations;
@@ -71,4 +106,59 @@ export async function fetchDonorDonations() {
 /** Members use the household lookup (/my-donations); donors use their verified email. */
 export function fetchDonationSummaryFor(kind: 'member' | 'donor') {
   return kind === 'member' ? fetchMyDonations() : fetchDonorDonations();
+}
+
+export type MembershipRegistration = {
+  firstName: string;
+  lastName: string;
+  spouseFirstName: string;
+  spouseLastName: string;
+  email: string;
+  mobileNumber: string;
+  address: string;
+  noOfKids: string;
+  noOfAdults: string;
+  primaryVolunteer: { interested: boolean; areas: string[] };
+  spouseVolunteer: { interested: boolean; areas: string[] };
+  additionalVolunteers: never[];
+  emailOptIn: boolean;
+  textOptIn: boolean;
+};
+
+export async function registerMembership(registration: MembershipRegistration) {
+  const data = await api<{ message?: string }>('/register', { method: 'POST', body: registration });
+  return data.message ?? 'Your AAYSSA membership registration was submitted. Please check your email for a welcome message.';
+}
+
+export type MaaladharanRegistration = {
+  id: number;
+  participantType: 'primary' | 'spouse' | 'additional' | string;
+  participantName: string;
+  age: number;
+  phoneNumber: string;
+  maaladharanDate: string;
+  firstDeeksha: boolean;
+  padiStatus: string;
+  irumudiOffering: string;
+  memberNotes?: string;
+  status: string;
+};
+
+export type MaaladharanData = {
+  season: string;
+  seasonStart: string;
+  seasonEnd: string;
+  registrations: MaaladharanRegistration[];
+};
+
+export function fetchMaaladharanRegistrations() {
+  return api<MaaladharanData>('/my-volunteers?resource=maaladharan', { auth: true });
+}
+
+export function registerMaaladharan(registration: Omit<MaaladharanRegistration, 'id' | 'status'>) {
+  return api<MaaladharanData>('/my-volunteers?resource=maaladharan', { method: 'POST', auth: true, body: registration });
+}
+
+export function updateMaaladharanRegistration(update: { id: number; action: 'update' | 'withdraw'; maaladharanDate?: string; padiStatus?: string; irumudiOffering?: string; memberNotes?: string }) {
+  return api<MaaladharanData>('/my-volunteers?resource=maaladharan', { method: 'PATCH', auth: true, body: update });
 }

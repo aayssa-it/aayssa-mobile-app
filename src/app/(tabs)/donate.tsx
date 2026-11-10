@@ -53,6 +53,12 @@ export default function DonateScreen() {
         <Text style={d.eyebrow}>GIVE WITH DEVOTION</Text>
         <Text accessibilityRole="header" style={d.title}>Donate</Text>
         <Text style={d.body}>Choose a campaign. Every gift supports seva at the Sangam.</Text>
+        {campaigns === null ? (
+          <View style={[d.syncNote, { marginTop: 6 }]}>
+            <Ionicons accessible={false} name="cloud-outline" size={16} color={colors.green} />
+            <Text style={[d.small, { flex: 1 }]}>Internet is required to load current campaigns and complete a donation.</Text>
+          </View>
+        ) : null}
       </View>
 
       {giving.summary ? (

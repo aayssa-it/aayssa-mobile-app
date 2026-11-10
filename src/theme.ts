@@ -204,6 +204,68 @@ export const styles = StyleSheet.create({
     letterSpacing: -0.5,
     color: '#362F26'
   },
+  homeMapCard: {
+    overflow: 'hidden',
+    backgroundColor: '#FFFDF9',
+    borderWidth: 1,
+    borderColor: '#E7DCCD',
+    borderRadius: 22,
+    paddingBottom: 16
+  },
+  homeMapPreview: {
+    height: 132,
+    overflow: 'hidden',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#DDE9DF'
+  },
+  homeMapRoad: {
+    position: 'absolute',
+    height: 17,
+    borderWidth: 4,
+    borderColor: '#F4EFE6',
+    backgroundColor: '#FFFFFF'
+  },
+  homeMapPin: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#B84A0A',
+    borderWidth: 4,
+    borderColor: '#FFF9E9'
+  },
+  homeMapCopy: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 12,
+    paddingHorizontal: 16,
+    paddingTop: 15
+  },
+  homeSocialGrid: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 10
+  },
+  homeSocialButton: {
+    width: '48%',
+    minHeight: 52,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 9,
+    paddingHorizontal: 13,
+    borderWidth: 1,
+    borderColor: '#E7DCCD',
+    borderRadius: 15,
+    backgroundColor: '#FFFDF9'
+  },
+  homeSocialText: {
+    flex: 1,
+    color: '#493D31',
+    fontSize: 13,
+    fontWeight: '700'
+  },
   homeNotice: {
     backgroundColor: '#FFFDF9',
     borderWidth: 1,
