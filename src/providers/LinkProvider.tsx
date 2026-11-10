@@ -4,10 +4,12 @@ import { Linking, Pressable, StyleSheet, Text, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { pageTitle } from '../data/content';
+import { nativeDestination } from '../lib/appNavigation';
 import { classifyUrl, resolveDestination } from '../lib/urls';
 
 type LinkActions = {
   open: (path: string) => void;
+  openWebsite: (path: string) => void;
   openExternal: (url: string) => Promise<void>;
 };
 const LinkContext = createContext<LinkActions | null>(null);
@@ -26,7 +28,7 @@ export function LinkProvider({ children }: PropsWithChildren) {
     }
   }, []);
 
-  const open = useCallback((path: string) => {
+  const openWebsite = useCallback((path: string) => {
     setError('');
     const destination = resolveDestination(path);
     if(destination.kind === 'website') {
@@ -38,8 +40,18 @@ export function LinkProvider({ children }: PropsWithChildren) {
     }
   }, [openExternal]);
 
+  const open = useCallback((path: string) => {
+    const native = nativeDestination(path);
+    if (native) {
+      setError('');
+      router.navigate(native);
+    } else {
+      openWebsite(path);
+    }
+  }, [openWebsite]);
+
   return (
-    <LinkContext.Provider value={{ open, openExternal }}>
+    <LinkContext.Provider value={{ open, openWebsite, openExternal }}>
       {children}
       {error ? (
         <View style={[styles.banner, { top: insets.top + 8 }]}>
